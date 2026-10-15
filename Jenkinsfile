@@ -1,42 +1,24 @@
-
 pipeline {
     agent any
 
     stages {
-        stage('Checkout source') {
+        stage('Check Node') {
             steps {
-                checkout scm
+                sh 'node -v'
+                sh 'npm -v'
             }
         }
 
-        stage('Install dependencies') {
+        stage('Install Dependencies') {
             steps {
-                sh 'node --version'
-                sh 'npm --version'
-                sh 'npm install'
+                sh 'npm ci'
             }
         }
 
-        stage('Build project') {
+        stage('Build') {
             steps {
                 sh 'npm run build'
             }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploy stage reached'
-            }
-        }
-    }
-
-    post {
-        success {
-            echo 'BUILD SUCCESS'
-        }
-
-        failure {
-            echo 'BUILD FAILED'
         }
     }
 }
