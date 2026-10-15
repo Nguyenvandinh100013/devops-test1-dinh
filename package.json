@@ -1,0 +1,11 @@
+{
+  "name": "devops-test1-dinh",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "type": "commonjs"
+}
