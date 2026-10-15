@@ -1,13 +1,9 @@
+
 pipeline {
     agent any
 
     tools {
         nodejs 'NodeJS'
-    }
-
-    environment {
-        PROJECT = 'devops-test1-dinh'
-        BRANCH = 'main'
     }
 
     stages {
@@ -19,6 +15,8 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
+                sh 'node --version'
+                sh 'npm --version'
                 sh 'npm install'
             }
         }
@@ -31,8 +29,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Deploying website...'
-                sh 'npx vercel --prod --yes --token "$VERCEL_TOKEN"'
+                echo 'Deploy stage reached'
             }
         }
     }
@@ -41,6 +38,7 @@ pipeline {
         success {
             echo 'BUILD SUCCESS'
         }
+
         failure {
             echo 'BUILD FAILED'
         }
